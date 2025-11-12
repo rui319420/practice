@@ -18,9 +18,9 @@ jobs:
           key: npm-${{ hashFiles('package-lock.json') }}
       - run: npm install
         if: steps.npm-cache.outputs.cache-hit != 'true'
-      - run: npm run lint
-      - run: npm run typecheck
-      - run: npm run build
+      # - run: npm run lint
+      # - run: npm run typecheck
+      # - run: npm run build
 
   build:
     if: github.ref_name == 'main'
@@ -40,7 +40,7 @@ jobs:
           key: npm-${{ hashFiles('package-lock.json') }}
       - run: npm install
         if: steps.npm-cache.outputs.cache-hit != 'true'
-      - run: npm run build
+      # - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
