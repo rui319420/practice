@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const Blog = require('./models/blog')
+const Blog = require('./models/blog');
 
 // connect to mongodb
 const dbURI = 'mongodb+srv://tapioka:test1234@nodetuts.rukgis0.mongodb.net/mode-tuts?appName=nodetuts';
@@ -15,12 +15,10 @@ const app = express();
 // register view engine
 app.set('view engine', 'ejs');
 
-
 // middleare $ static file
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true}));
 app.use(morgan('dev'));
-
-
 
 app.get('/', (req, res) => {
   res.redirect('/blogs')
@@ -39,6 +37,41 @@ app.get('/blogs', (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+    })
+});
+
+app.post('/blogs', (req, res) => {
+  const blog = new Blog(req.body);
+
+  blog.save()
+    .then((result) => {
+      res.redirect('/blogs');
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+});
+
+app.delete('/blogs/:id', (req, res) => {
+  const id = req.params.id;
+
+  Blog.findByIdAndDelete(id)
+    .then(result => {
+      res.json({redirect: '/blogs'})
+    })
+    .catch(err => {
+      console.log(err);
+    })
+})
+
+app.get('/blogs/:id', (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then(result => {
+      res.render('details', { blog: result, title: 'Blog Details'});
+    })
+    .catch(err => {
+      console.log(err)
     })
 })
 
