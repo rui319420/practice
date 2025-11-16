@@ -6,7 +6,7 @@
   font-family: "Quicksand";
   color: #333;
 }
-.navber {
+.navbar {
   padding: 20px;
   display: flex;
   align-items: center;
@@ -14,18 +14,18 @@
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
 }
-.navber h1 {
+.navbar h1 {
   color: #f1356d;
 }
-.navber .links {
+.navbar .links {
   margin-left: auto;
 }
-.navber a {
+.navbar a {
   margin-left: 16px;
   text-decoration: none;
   padding: 6px;
 }
-.navber a:hover {
+.navbar a:hover {
   color: #f1356d;
 }
 .content {
