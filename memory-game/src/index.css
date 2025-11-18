@@ -9,3 +9,13 @@ body {
   background: #1b1523;
   color: #fff;
 }
+.front {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+.back {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
