@@ -1,9 +1,21 @@
 .container{
-  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  border: 10px solid #f1356d;
 }
 .button{
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  border-radius: 600px;
+  top: auto;
+  width: 3em;
+  height: 3em;
+  font-size: 50px;
+  border: 10px solid #f1356d;
 }
