@@ -30,3 +30,18 @@
   font-size: 20px;
   border: 10px solid #f1356d;
 }
+.text-block{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  top: auto;
+  width: 22em;
+  height: 3em;
+  font-size: 20px;
+  border: 10px solid #f1356d;
+}
+.message{
+  margin-top: 20px;
+  color: blue;
+}

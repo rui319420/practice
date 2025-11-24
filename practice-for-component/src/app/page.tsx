@@ -36,7 +36,7 @@ export default function Home() {
         />
         <Button label="押す" onClick={ButtonClick} />
         {serverResponse && (
-        <p className="text-block" style={{ marginTop: '20px', color: 'blue' }}>
+        <p className="text-block message">
           {serverResponse}
         </p>
         )}
