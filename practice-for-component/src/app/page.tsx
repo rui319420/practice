@@ -11,9 +11,6 @@ export default function Home() {
     try {
       const res = await fetch('/api/echo', {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({ message: message }),
       });
       const data = await res.json();
