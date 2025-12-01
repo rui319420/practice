@@ -1,3 +1,21 @@
 .WeekHeader {
-  
+display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 735px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.Day {
+  padding: 5px 0;
+}
+
+.Sunday {
+  color: crimson;
+}
+
+.Saturday {
+  color: blue;
 }
