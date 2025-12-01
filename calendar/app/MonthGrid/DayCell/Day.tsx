@@ -1,10 +1,14 @@
 import styles from "./Day.module.css"
 
-export function DayCell() {
+type Props = {
+  index: number
+}
+
+export function DayCell({index}: Props) {
   
   return (
     <div className={styles.Cell}>
-      
+      {index}
     </div>
   )
 }
