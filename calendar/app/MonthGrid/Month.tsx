@@ -4,9 +4,11 @@ import styles from "./Month.module.css"
 
 type Props = {
   currentDate: Date;
+  selectedDate: Date | null;
+  onDateClick: (date: Date) => void;
 }
 
-export function Month({ currentDate }: Props) {
+export function Month({ currentDate, selectedDate, onDateClick }: Props) {
 
   const daysInMonth = getDaysInMonth(currentDate);
   const firstDayOfMonth = startOfMonth(currentDate);
@@ -26,6 +28,8 @@ export function Month({ currentDate }: Props) {
             key={index}
             index={day}
             currentDate={currentDate}
+            selectedDate={selectedDate}
+            onDateClick={onDateClick}
           >
           </DayCell>
         )

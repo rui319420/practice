@@ -9,6 +9,7 @@ import { addMonths, subMonths } from "date-fns";
 export default function Home() {
 
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const handlePrevMonth = () => {
     setCurrentDate(subMonths(currentDate, 1));
@@ -18,6 +19,11 @@ export default function Home() {
     setCurrentDate(addMonths(currentDate, 1));
   }
 
+  const handleDateClick = (date: Date) => {
+    setSelectedDate(date);
+    console.log("クリックされた日:", date);
+  };
+
   return (
     <div className="container">
       <Header
@@ -25,7 +31,11 @@ export default function Home() {
       onPrev={handlePrevMonth} 
       onNext={handleNextMonth}
       />
-      <Month currentDate={currentDate} />
+      <Month
+      currentDate={currentDate}
+      selectedDate={selectedDate}
+      onDateClick={handleDateClick}
+      />
     </div>
   );
 }
