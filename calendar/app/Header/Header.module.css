@@ -1,3 +1,10 @@
 .Header {
+  display: flex;
   font-size: 100px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  font-size: 30px;
 }

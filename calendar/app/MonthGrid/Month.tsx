@@ -2,20 +2,18 @@ import { getDaysInMonth, startOfMonth, getDay, isToday } from "date-fns";
 import { DayCell } from "./DayCell/Day"
 import styles from "./Month.module.css"
 
-export function Month() {
+type Props = {
+  currentDate: Date;
+}
 
-  const today = new Date();
-  // 今日の日付を取得
+export function Month({ currentDate }: Props) {
 
-  const daysInMonth = getDaysInMonth(today); // 今月は何日あるか
-
-  const firstDayOfMonth = startOfMonth(today); // 今月の一日は何曜日か
+  const daysInMonth = getDaysInMonth(currentDate);
+  const firstDayOfMonth = startOfMonth(currentDate);
   const startingDayIndex = getDay(firstDayOfMonth);
 
   const emptySlots = Array(startingDayIndex).fill(null);
-  
   const cells = [...Array(daysInMonth)].map((_, i) => i + 1);
-  // ひと月あたりの日にちを配列にする
 
   return (
     <div className={styles.DayBox}>
