@@ -1,4 +1,4 @@
-import { getDaysInMonth, startOfMonth, getDay } from "date-fns";
+import { getDaysInMonth, startOfMonth, getDay, isToday } from "date-fns";
 import { DayCell } from "./DayCell/Day"
 import styles from "./Month.module.css"
 

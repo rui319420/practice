@@ -1,27 +1,18 @@
 import styles from "./Day.module.css"
-import { getDay } from "date-fns"
+import { getDay, getDate } from "date-fns"
 
 type Props = {
   index: number
 }
 
-
-
 export function DayCell({index}: Props) {
   
-  let DayOfWeek = ''
-
   const today = new Date()
-  if (getDay(today) === 1) {
-    DayOfWeek = styles.Sunday
-    console.log('Monday')
-  }
+  const todayStyle = index === getDate(today) ? styles.Today : ""
 
   return (
-    <div className={styles.Cell}>
+    <div className={`${styles.Cell} ${todayStyle}`}>
       {index}
-      <div className={DayOfWeek}>
-      </div>
     </div>
   )
 }

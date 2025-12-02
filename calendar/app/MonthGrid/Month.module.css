@@ -5,7 +5,7 @@
 .DayBox {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  width: 300px;
+  width: fit-content;
   height: 300px;
   align-items: center;
   justify-content: center;
