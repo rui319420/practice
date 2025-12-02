@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from "react";
-import { DayCell } from "./MonthGrid/DayCell/Day";
 import { Month } from "./MonthGrid/Month";
 import { Header } from "./Header/Header";
 import { addMonths, subMonths } from "date-fns";

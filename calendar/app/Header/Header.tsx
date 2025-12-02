@@ -17,7 +17,7 @@ export function Header({ currentDate, onPrev, onNext }: Props) {
       <div>{format(currentDate, "yyyy年MM月")}</div>
       <button onClick={onNext} className={styles.button}>次月 &gt;</button>
     </div>
-    <WeekHeader></WeekHeader>
+    <WeekHeader/>
   </div>
   )
 }
