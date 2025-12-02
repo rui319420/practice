@@ -25,6 +25,7 @@ export function Month({ currentDate }: Props) {
           <DayCell
             key={index}
             index={day}
+            currentDate={currentDate}
           >
           </DayCell>
         )
