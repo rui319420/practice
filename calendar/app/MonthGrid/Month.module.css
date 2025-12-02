@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   width: fit-content;
-  height: 300px;
+  height: auto;
   align-items: center;
   justify-content: center;
   font-size: 30px;
