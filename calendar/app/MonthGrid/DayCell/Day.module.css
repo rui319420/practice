@@ -9,7 +9,7 @@
 }
 
 .Cell:hover {
-  background-color: #f0f0f0;
+  background-color: rgb(80, 177, 145);
 }
 
 .Selected {
