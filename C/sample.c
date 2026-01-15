@@ -1,24 +1,22 @@
 #include <stdio.h>
-
-int add(void);
-int sub(void);
+#include <windows.h>
 
 int main(void)
 {
-  printf("%d\n", 10 + 3);
-  add();
-  sub();
-  return 0;
-}
+  SetConsoleOutputCP(65001);
+  int a;
+  int b;
+  int sum;
 
-int add(void)
-{
-  printf("%d + %d = %d\n", 3, 5, 3 + 5);
-  return 0;
-}
+  printf("1つ目の数字を入力してください: ");
+  scanf("%d", &a);
 
-int sub(void)
-{
-  printf("%d - %d = %d\n", 7, 2, 7 - 2);
+  printf("2つ目の数字を入力してください: ");
+  scanf("%d", &b);
+
+  sum = a + b;
+
+  printf("合計は %d です！\n", sum);
+
   return 0;
 }
