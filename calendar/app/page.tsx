@@ -59,6 +59,6 @@ export default function Home() {
       selectedDate={selectedDate}
       onDateClick={handleDateClick}
       />
-    </div>
+      </div>
   );
 }

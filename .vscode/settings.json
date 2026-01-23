@@ -1,2 +1,22 @@
 {
+  "sqltools.connections": [
+    {
+      "ssh": "Disabled",
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "Docker Postgres",
+      "database": "practicedb",
+      "username": "user",
+      "password": "password"
+    },
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "testDB",
+      "database": "test_practice.db"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
 }
