@@ -1,21 +1,166 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Breakout</title>
+  <title>ブロック崩し</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #000;
+    }
+
+    canvas {
+      border: 2px solid #fff;
+    }
+  </style>
 </head>
+
 <body>
-  <canvas style="
-    display: flex;
-    width: 500px;
-    height: 500px;
-    background-color: #bbb;
-  "></canvas>
+  <canvas id="gameCanvas" width="800" height="600"></canvas>
 
-  <script type="py">
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
 
+    // パドル
+    const paddle = {
+      x: canvas.width / 2 - 50,
+      y: canvas.height - 30,
+      width: 100,
+      height: 15,
+      speed: 8
+    };
+
+    // ボール
+    const ball = {
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      radius: 10,
+      dx: 5,
+      dy: -5
+    };
+
+    // ブロック
+    const blockRows = 5;
+    const blockCols = 10;
+    const blockWidth = 70;
+    const blockHeight = 25;
+    const blockPadding = 5;
+    const blockOffsetTop = 50;
+    const blockOffsetLeft = 35;
+
+    const blocks = [];
+    for (let row = 0; row < blockRows; row++) {
+      blocks[row] = [];
+      for (let col = 0; col < blockCols; col++) {
+        blocks[row][col] = true;
+      }
+    }
+
+    // キーボード入力
+    let keys = {};
+    document.addEventListener('keydown', (e) => {
+      keys[e.key] = true;
+    });
+    document.addEventListener('keyup', (e) => {
+      keys[e.key] = false;
+    });
+
+    // 描画
+    function drawPaddle() {
+      ctx.fillStyle = '#4CAF50';
+      ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+    }
+
+    function drawBall() {
+      ctx.fillStyle = '#fff';
+      ctx.beginPath();
+      ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function drawBlocks() {
+      for (let row = 0; row < blockRows; row++) {
+        for (let col = 0; col < blockCols; col++) {
+          if (blocks[row][col]) {
+            const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8'];
+            ctx.fillStyle = colors[row % colors.length];
+            const blockX = col * (blockWidth + blockPadding) + blockOffsetLeft;
+            const blockY = row * (blockHeight + blockPadding) + blockOffsetTop;
+            ctx.fillRect(blockX, blockY, blockWidth, blockHeight);
+          }
+        }
+      }
+    }
+
+    // 更新
+    function updatePaddle() {
+      if (keys['ArrowLeft'] && paddle.x > 0) {
+        paddle.x -= paddle.speed;
+      }
+      if (keys['ArrowRight'] && paddle.x < canvas.width - paddle.width) {
+        paddle.x += paddle.speed;
+      }
+    }
+
+    function updateBall() {
+      ball.x += ball.dx;
+      ball.y += ball.dy;
+
+      if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+        ball.dx = -ball.dx;
+      }
+
+      if (ball.y - ball.radius < 0) {
+        ball.dy = -ball.dy;
+      }
+
+      if (ball.y + ball.radius > paddle.y &&
+        ball.x > paddle.x &&
+        ball.x < paddle.x + paddle.width) {
+        ball.dy = -Math.abs(ball.dy);
+        const hitPos = (ball.x - paddle.x) / paddle.width;
+        ball.dx = (hitPos - 0.5) * 10;
+      }
+
+      for (let row = 0; row < blockRows; row++) {
+        for (let col = 0; col < blockCols; col++) {
+          if (blocks[row][col]) {
+            const blockX = col * (blockWidth + blockPadding) + blockOffsetLeft;
+            const blockY = row * (blockHeight + blockPadding) + blockOffsetTop;
+
+            if (ball.x + ball.radius > blockX &&
+              ball.x - ball.radius < blockX + blockWidth &&
+              ball.y + ball.radius > blockY &&
+              ball.y - ball.radius < blockY + blockHeight) {
+              blocks[row][col] = false;
+              ball.dy = -ball.dy;
+            }
+          }
+        }
+      }
+    }
+
+    // ゲームループ
+    function gameLoop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      updatePaddle();
+      updateBall();
+      drawBlocks();
+      drawPaddle();
+      drawBall();
+      requestAnimationFrame(gameLoop);
+    }
+
+    gameLoop();
   </script>
-
 </body>
+
 </html>
