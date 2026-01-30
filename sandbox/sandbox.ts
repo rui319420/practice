@@ -1,2 +1,2 @@
 console.log("仮")
-console.log('テスト')
+console.log(1 + 1)
